@@ -1,0 +1,19 @@
+button{
+	margin: 10px;
+	display: block;
+}
+
+progress{
+	display: block;
+	margin: 15px;
+}
+
+div {
+	margin: 15px;
+	display: inline;
+}
+
+span{
+	display:inline-block;
+
+}
