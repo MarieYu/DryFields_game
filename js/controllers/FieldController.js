@@ -9,7 +9,9 @@ function FieldController(model, view){
 }
 
 FieldController.prototype.update = function(event){
-
+	if(event.type === 'PROGRESS_BAR_CHANGED'){
+		this._model.setProgress(event.data);
+	}
 };
 
 FieldController.prototype.addField = function(field){

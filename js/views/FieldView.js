@@ -26,10 +26,14 @@ FieldView.prototype._createElements = function(){
 	body.append(this._spanElem)
 };
 
-FieldView.prototype._init = function(){
-
+FieldView.prototype.display = function(){
+	this._tankElem.html(this._model.getTankVol());
+	this._progressElem.val(this._model.getProgress());
 };
 
 FieldView.prototype.update = function(event){
-
+	if(event.type === 'PROGRESS_BAR_CHANGED'){
+		this._progressElem.innerHTML = this._model.getProgress();
+		this.display();
+	}
 };
