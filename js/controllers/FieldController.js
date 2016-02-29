@@ -9,9 +9,15 @@ function FieldController(model, view){
 }
 
 FieldController.prototype.update = function(event){
-	if(event.type === 'PROGRESS_BAR_CHANGED'){
-		this._model.setProgress(event.data);
+	switch(event.type){
+		case 'PROGRESS_BAR_CHANGED': 
+			this._model.setProgress(event.data);
+		case 'DRY_PRESS':
+			this._model.setTankVol(event.data);
+		case 'TANK_VOL_CHANGED':
+			this._model.setTankVol(event.data);
 	}
+
 };
 
 FieldController.prototype.addField = function(field){

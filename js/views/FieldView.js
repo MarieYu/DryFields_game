@@ -16,8 +16,8 @@ FieldView.prototype._createElements = function(){
 	this._spanElem = $('<span></span>');
 	this._dryElem = $('<button>irriguer</button>'); //bouton irriguer
 	this._harvestElem  = $('<button>récolter</button>'); //bouton récolte
-	this._tankElem = $('<div id="tank">0 L</div>');//citerne d'eau
-	this._progressElem  = $('<progress value=\"3\" max=\"20\"></progress>');
+	this._tankElem = $('<div id="tank"></div>');//citerne d'eau
+	this._progressElem  = $('<progress value=\"0\" max=\"20\"></progress>');
 	
 	this._spanElem.append(this._tankElem);
 	this._spanElem.append(this._dryElem);
