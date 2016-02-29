@@ -1,17 +1,22 @@
 // /js/models/Field.js
 
-function Field(){
+function Field(id){
 	Observable.call(this);
-	this._game = game;
+	this._id = id;
 	this._interval = null;
 	this._progress = 15;
 	this._tank = 3;
 	this._mature();
+	// this._game = game;
 
 }
 
 Field.prototype = Object.create(Observable.prototype); // Field extends Observable
 Field.prototype.constructor = Field;
+
+// Field.prototype.addGame = function(game){
+
+// };
 
 //maturation du champs = barre de progression incrémente d'1 chaque sec
 Field.prototype._mature = function(){
@@ -23,7 +28,7 @@ Field.prototype._mature = function(){
 			if (this._progress === 20){
 				clearInterval(this._interval);
 				this._interval = null;
-				this.notify({type: 'HARVEST_TIME'});//pour changer bouton de couleur
+				this.notify({type: 'HARVEST_TIME', id: this.getId()});//pour changer bouton de couleur
 			}
 			if(this._tank === 0){
 				clearInterval(this._interval);
@@ -33,18 +38,6 @@ Field.prototype._mature = function(){
 		}.bind(this), 1000);		
 	}
 };
-// //utilisation de l'eau de la citerne du champ = diminution de 1L toutes les sec
-// Field.prototype._tankDraw = function(){
-// 	if(!this._intTank){
-// 		this._intTank = setInterval(function(){
-// 			if(this._tank === 0 || this._progress === 20){
-// 				clearInterval(this._intTank);
-// 				this._intTank = null;
-// 			}
-// 		}.bind(this), 1000);
-// 	}
-// };
-
 
 //progress bar augmente si citerne > 0
 Field.prototype.dryFields = function(){
@@ -61,6 +54,10 @@ Field.prototype.harvest = function(){
 	}
 };
 
+Field.prototype.getId = function(){
+	return this._id;
+};
+
 Field.prototype.getTankVol = function(){
 	return this._tank;
 };
@@ -72,11 +69,11 @@ Field.prototype.getProgress = function(){
 Field.prototype.setTankVol = function(tankVol){
 	this._tank = tankVol;
 	this.dryFields();
-	this.notify({type: 'TANK_VOL_CHANGED' , data: this.getTankVol()});
+	this.notify({type: 'TANK_VOL_CHANGED' , data: this.getTankVol(), id: this.getId()});
 };
 
 Field.prototype.setProgress = function(progress){
 	this._progress = progress;
-	this.notify({type: 'PROGRESS_BAR_CHANGED', data: this.getProgress()});
+	this.notify({type: 'PROGRESS_BAR_CHANGED', data: this.getProgress(), id: this.getId()});
 };
 

@@ -1,7 +1,8 @@
 // /js/views/FieldView.js
 
-function FieldView(model){
+function FieldView(model, id){
 	Observable.call(this);
+	this._id = id;
 	this._model = model;
 	this._createElements();
 	this._bindListeners();
@@ -10,6 +11,10 @@ function FieldView(model){
 
 FieldView.prototype = Object.create(Observable.prototype); // FieldView extends Observable
 FieldView.prototype.constructor = FieldView;
+
+FieldView.prototype.getId = function(){
+	return this._id;
+};
 
 
 FieldView.prototype._createElements = function(){
@@ -34,22 +39,23 @@ FieldView.prototype.display = function(){
 
 FieldView.prototype._bindListeners = function(){
 	this._dryElem.on('click', function(e){
-		this.notify({type: 'DRY_PRESS', data: this._model.getTankVol()});
+		this.notify({type: 'DRY_PRESS', data: this._model.getTankVol(), id: this._model.getId()});
+		//console.log("id "+this._model.getId());
 	}.bind(this));
 	this._harvestElem.on('click', function(e){
 		this._harvestElem.removeClass('harvestTime');
-		this.notify({type: 'HARVEST_PRESS'});
+		this.notify({type: 'HARVEST_PRESS', id: this._model.getId()});
 	}.bind(this));
 };
 
 FieldView.prototype.update = function(event){
-	if(event.type === 'PROGRESS_BAR_CHANGED'){
+	if(event.type === 'PROGRESS_BAR_CHANGED' && event.id === this._model.getId()){
 		this.display();
 	}
-	if(event.type === 'TANK_VOL_CHANGED'){
+	if(event.type === 'TANK_VOL_CHANGED' && event.id === this._model.getId()){
 		this.display();
 	}
-	if(event.type === 'HARVEST_TIME'){
+	if(event.type === 'HARVEST_TIME' && event.id === this._model.getId()){
 		this._harvestElem.attr('class', 'harvestTime');
 	}
 

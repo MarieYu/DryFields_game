@@ -1,14 +1,20 @@
 // /js/models/Game.js
 
-function Game(field){
+function Game(){
 	Observable.call(this);
+	this._fields = [];
 	this._money = 50;
 	this._globalTank = 3;
 	this_nbHarvest = 0;
+	//this._addFieldModel();
 }
 
 Game.prototype = Object.create(Observable.prototype); // Game extends Observable
 Game.prototype.constructor = Game;
+
+Game.prototype._addFieldModel = function(field){
+	this._fields.push(field);
+};
 
 Game.prototype.getMoney = function(){
 	return this._money;
