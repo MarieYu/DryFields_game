@@ -1,13 +1,17 @@
 // js/app.js
 
 
-var ctrl = new FieldController();
-for (var ii=1; ii<=3; ii++){
+//for (var ii=1; ii<=3; ii++){
 	var field= new Field();
 	var view = new FieldView(field);
+	var ctrl = new FieldController(field, view);
+	// ctrl.addField(field);
+	// ctrl.addFieldView(view);
 	view.addObserver(ctrl);
 	field.addObserver(view);
-}
+//}
+
+
 // //Champ A
 // var fieldA = new Field();//model
 // var viewA = new FieldView(fieldA);//view
