@@ -14,6 +14,8 @@ function Field(id){
 Field.prototype = Object.create(Observable.prototype); // Field extends Observable
 Field.prototype.constructor = Field;
 
+
+
 // Field.prototype.addGame = function(game){
 
 // };

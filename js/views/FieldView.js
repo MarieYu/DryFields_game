@@ -29,7 +29,7 @@ FieldView.prototype._createElements = function(){
 	this._spanElem.append(this._dryElem);
 	this._spanElem.append(this._harvestElem);
 	this._spanElem.append(this._progressElem);
-	body.append(this._spanElem)
+	body.append(this._spanElem);
 };
 
 FieldView.prototype.display = function(){
@@ -49,13 +49,13 @@ FieldView.prototype._bindListeners = function(){
 };
 
 FieldView.prototype.update = function(event){
-	if(event.type === 'PROGRESS_BAR_CHANGED' && event.id === this._model.getId()){
+	if(event.type === 'PROGRESS_BAR_CHANGED' ){
 		this.display();
 	}
-	if(event.type === 'TANK_VOL_CHANGED' && event.id === this._model.getId()){
+	if(event.type === 'TANK_VOL_CHANGED'){
 		this.display();
 	}
-	if(event.type === 'HARVEST_TIME' && event.id === this._model.getId()){
+	if(event.type === 'HARVEST_TIME'){
 		this._harvestElem.attr('class', 'harvestTime');
 	}
 
