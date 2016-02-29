@@ -24,7 +24,6 @@ FieldController.prototype.update = function(event){
 			this._fields[event.id].harvest();
 			break;
 	}
-
 };
 
 
