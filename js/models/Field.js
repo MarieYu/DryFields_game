@@ -4,9 +4,8 @@ function Field(id){
 	Observable.call(this);
 	this._id = id;
 	this._interval = null;
-	this._progress = 0;
+	this._progress = 0;// growth level
 	this._tank = 3;
-	this._mature();
 }
 
 Field.prototype = Object.create(Observable.prototype); // Field extends Observable
@@ -14,11 +13,13 @@ Field.prototype.constructor = Field;
 
 
 //maturation du champs = barre de progression incrémente d'1 chaque sec
-Field.prototype._mature = function(){
-	if(!this._interval && this._progress < 20){
+Field.prototype.mature = function(){
+	if(!this._interval){
 		this._interval = setInterval(function(){
-			this.setProgress(this._progress + 1); //augmente valeur de 1 chaque seconde
-			this.setTankVol(this._tank - 1);
+			if(this.getTankVol() > 0 && this._progress < 20){
+				this.setProgress(this._progress + 1); //augmente valeur de 1 chaque seconde
+				this.setTankVol(this._tank - 1);	
+			}
 			
 			if (this._progress === 20){
 				clearInterval(this._interval);
@@ -37,7 +38,7 @@ Field.prototype._mature = function(){
 //progress bar augmente si citerne > 0
 Field.prototype.dryFields = function(){
 	if(this._tank > 0){
-		this._mature();
+		this.mature();
 	}
 };
 
@@ -45,7 +46,7 @@ Field.prototype.dryFields = function(){
 Field.prototype.harvest = function(){
 	if(this._progress === 20 && this._tank > 0){		
 		this.setProgress(0); //remise à 0 de la maturité du champs après récolte
-		this._mature();
+		this.mature();
 	}
 };
 

@@ -4,8 +4,17 @@ function FieldController(gameModel){
 	this._fields = [];
 	this._views = [];
 	this._gameModel = gameModel;
-
 }
+
+// ajout du modèle
+FieldController.prototype.addField = function(field){
+	this._fields.push(field);
+};
+
+//ajout de la vue
+FieldController.prototype.addFieldView = function(fieldView){
+	this._views.push(fieldView);
+};
 
 FieldController.prototype.update = function(event){
 	switch(event.type){
@@ -26,15 +35,4 @@ FieldController.prototype.update = function(event){
 			break;
 		
 	}
-};
-
-
-// ajout du modèle
-FieldController.prototype.addField = function(field){
-	this._fields.push(field);
-};
-
-//ajout de la vue
-FieldController.prototype.addFieldView = function(fieldView){
-	this._views.push(fieldView);
 };

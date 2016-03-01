@@ -6,7 +6,6 @@ function FieldView(model, id){
 	this._model = model;
 	this._createElements();
 	this._bindListeners();
-
 }
 
 FieldView.prototype = Object.create(Observable.prototype); // FieldView extends Observable
@@ -19,16 +18,17 @@ FieldView.prototype.getId = function(){
 
 FieldView.prototype._createElements = function(){
 	var body = $(document.body);
-	this._spanElem = $('<span></span>');
+	this._spanElem = $('<span>');
 	this._dryElem = $('<button>irriguer</button>'); //bouton irriguer
 	this._harvestElem  = $('<button class="">récolter</button>'); //bouton récolte
 	this._tankElem = $('<div id="tank"></div>');//citerne d'eau
-	this._progressElem  = $('<progress value=\"0\" max=\"20\"></progress>');
+	this._progressElem  = $('<progress value=\"0\" max=\"20\">');
 	
-	this._spanElem.append(this._tankElem);
-	this._spanElem.append(this._dryElem);
-	this._spanElem.append(this._harvestElem);
-	this._spanElem.append(this._progressElem);
+	this._spanElem
+		.append(this._tankElem)
+		.append(this._dryElem)
+		.append(this._harvestElem)
+		.append(this._progressElem);
 	body.append(this._spanElem);
 };
 

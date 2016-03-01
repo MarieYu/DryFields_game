@@ -12,7 +12,8 @@ GameController.prototype.update = function(event){
 		//console.log('update controller', event.data);
 			this._gameModel.waterPurchase(event.data);//appel fonction achat d'eau sur clic dans la popin
 			break;
-		//case 'START_PRESS':
+		case 'START_PRESS':
+			this._gameModel.start();
 
 	}
 };

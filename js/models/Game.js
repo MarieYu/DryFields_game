@@ -25,12 +25,25 @@ Game.prototype.tankDry = function(field){
 };
 
 Game.prototype.start = function(){
-
+	this._fields.forEach(function(field){
+		field.mature();
+	});
 };
+
+/*Game.prototype.isStarted = function(){
+	return !!this.start();
+};*/
+/*Game.prototype.end = function(){
+	var over = true;
+	for(var ii = 0; ii < this._fields.length; ii++){
+
+	}
+};*/
+
 
 Game.prototype.waterPurchase = function(data){//data correcpond à ce qu'on passe comme volume d'eau acheté
 	if(this._money > 0 && this._money >= parseInt(data)){
-		console.log(this._money, parseInt(data));
+		//console.log(this._money, parseInt(data));
 		this.setMoney(this._money - parseInt(data));//diminution de 1$/L acheté
 		this.setGlobalTank(this.getGlobalTank() + parseInt(data));//augmentation vol citerne globale
 	}

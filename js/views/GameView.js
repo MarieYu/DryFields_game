@@ -21,12 +21,13 @@ GameView.prototype._createElements = function(){
 	this._goElem = $('<button>START</button>');
 	this._waterElem = $('<button>Acheter de l\'eau</button>');
 
-	this._divGame.append(this._nbHarvestElem);
-	this._divGame.append(this._globalTankElem);
-	this._divGame.append(this._moneyElem);
-	body.append(this._goElem);
-	body.append(this._divGame);
-	body.append(this._waterElem);
+	this._divGame
+		.append(this._nbHarvestElem)
+		.append(this._globalTankElem)
+		.append(this._moneyElem);
+	body.append(this._goElem)
+		.append(this._divGame)
+		.append(this._waterElem);
 	this.display();
 };
 
@@ -35,10 +36,10 @@ GameView.prototype.popinWater = function(){
 	this._popinElem = $('<div id="popin"></div>');
 	this._volumeElem = $('<input id="volume" type="number" min=1 max=100 value="1"/>');
 	this._buyElem = $('<button id="buy">acheter</button>');
-	this._popinElem.append(this._volumeElem);
-	this._popinElem.append(this._buyElem);
+	this._popinElem.append(this._volumeElem).append(this._buyElem);
 	body.append(this._popinElem);
-	this._buyElem.on('click', function(event){
+	
+	this._buyElem.on('click', function(event){//bouton achat d'eau
 		this.notify({type: 'WATER_PURCHASE', data: this._volumeElem.val()});
 		this._popinElem.hide();
 	}.bind(this));
