@@ -16,9 +16,8 @@ FieldController.prototype.update = function(event){
 			this._fields[event.id].setTankVol(event.data);
 			break;
 		case 'DRY_PRESS':
-			//this._fields[event.id].setTankVol((event.data)+1);
 			this._gameModel.tankDry(event.field);
-			//(this._gameModel.getGlobalTank()-1);
+			//console.log(event.field);
 			break;
 		case 'HARVEST_PRESS':
 			this._fields[event.id].harvest();

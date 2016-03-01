@@ -54,9 +54,9 @@ GameView.prototype._bindListeners = function(){
 	this._waterElem.on('click', function(e){
 		this.popinWater();//fonction qui crée la popin
 	}.bind(this));
-	/*this._goElem.on('click', function(e){
-
-	}.bind(this));*/
+	this._goElem.on('click', function(e){//bouton start
+		this.notify({type: 'START_PRESS'});
+	}.bind(this));
 	
 };
 

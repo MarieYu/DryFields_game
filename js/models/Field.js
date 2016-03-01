@@ -4,11 +4,9 @@ function Field(id){
 	Observable.call(this);
 	this._id = id;
 	this._interval = null;
-	this._progress = 18;
+	this._progress = 0;
 	this._tank = 3;
 	this._mature();
-
-
 }
 
 Field.prototype = Object.create(Observable.prototype); // Field extends Observable

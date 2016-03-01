@@ -9,7 +9,7 @@ for (var ii=0; ii<=2; ii++){
 	var field = new Field(ii);//instance d'un modèle avec id=ii
 	var fieldView = new FieldView(field, ii);//instance d'une vue avec id=ii
 
-	gameModel.addFieldModel(field);//ajout modèle champ à la partie
+	gameModel.addFieldModel(field);//ajout modèles champs à la partie
 	
 	ctrlField.addFieldView(fieldView);//ajout vues au controleur de champs
 	ctrlField.addField(field); //ajout modèles au controleur de champs
@@ -17,7 +17,7 @@ for (var ii=0; ii<=2; ii++){
 	fieldView.addObserver(ctrlField);
 	field.addObserver(fieldView);
 }
-
+//Observer
 gameModel.addObserver(gameView);
 gameView.addObserver(ctrlGame);
 

@@ -40,7 +40,6 @@ FieldView.prototype.display = function(){
 FieldView.prototype._bindListeners = function(){
 	this._dryElem.on('click', function(e){
 		this.notify({type: 'DRY_PRESS', field: this._model, id: this._model.getId()});
-		//console.log("id "+this._model.getId());
 	}.bind(this));
 	this._harvestElem.on('click', function(e){
 		this._harvestElem.removeClass('harvestTime');

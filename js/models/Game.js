@@ -18,7 +18,6 @@ Game.prototype.addFieldModel = function(field){
 };
 
 Game.prototype.tankDry = function(field){
-	console.log('field');
 	if(this._globalTank > 0){
 		this.setGlobalTank((this._globalTank)-1);
 		field.setTankVol(field.getTankVol()+1);
@@ -30,20 +29,13 @@ Game.prototype.start = function(){
 };
 
 Game.prototype.waterPurchase = function(data){//data correcpond à ce qu'on passe comme volume d'eau acheté
-		console.log('fonction waterPurchase');
 	if(this._money > 0 && this._money >= parseInt(data)){
 		console.log(this._money, parseInt(data));
 		this.setMoney(this._money - parseInt(data));//diminution de 1$/L acheté
 		this.setGlobalTank(this.getGlobalTank() + parseInt(data));//augmentation vol citerne globale
-		//this.notify({type: 'WATER_PURCHASE', money: this._gameModel.getMoney(), globalTank: rhis._gameModel.getGolbalTank()});
 	}
 };
 
-/*Game.prototype.dry = function(){
-	if(this._globalTank > 0){
-
-	}
-};*/
 
 // ------------------ GETTER & SETTER ----------------------- //
 Game.prototype.getMoney = function(){
