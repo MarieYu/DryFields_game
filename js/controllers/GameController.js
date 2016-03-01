@@ -9,12 +9,11 @@ function GameController(gameModel){
 //GameController.prototype.addGameModel = function()
 
 GameController.prototype.update = function(event){
-	console.log(event);
 	switch(event.type){
 		case 'WATER_PURCHASE':
-		console.log('update controller', event.data);
-			//appel fonction achat d'eau sur clic dans la popin
-			this._gameModel.waterPurchase(event.data);
+		//console.log('update controller', event.data);
+			this._gameModel.waterPurchase(event.data);//appel fonction achat d'eau sur clic dans la popin
 			break;
+		
 	}
 };

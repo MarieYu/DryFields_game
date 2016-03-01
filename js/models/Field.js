@@ -7,18 +7,13 @@ function Field(id){
 	this._progress = 18;
 	this._tank = 3;
 	this._mature();
-	// this._game = game;
+
 
 }
 
 Field.prototype = Object.create(Observable.prototype); // Field extends Observable
 Field.prototype.constructor = Field;
 
-
-
-// Field.prototype.addGame = function(game){
-
-// };
 
 //maturation du champs = barre de progression incrémente d'1 chaque sec
 Field.prototype._mature = function(){

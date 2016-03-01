@@ -17,29 +17,33 @@ Game.prototype.addFieldModel = function(field){
 	this._fields.push(field);
 };
 
+Game.prototype.tankDry = function(field){
+	console.log('field');
+	if(this._globalTank > 0){
+		this.setGlobalTank((this._globalTank)-1);
+		field.setTankVol(field.getTankVol()+1);
+	}
+};
 
 Game.prototype.start = function(){
-	if(!this._interval){
-		this._interval = setInterval(function(){
-			this.setGlobalTank(this._globalTank - 1);
-			if(this._globalTank === 0){
-				clearInterval(this._interval);
-				this._interval = null;
-			}
-		}, 1000);
-	}
+
 };
 
 Game.prototype.waterPurchase = function(data){//data correcpond à ce qu'on passe comme volume d'eau acheté
 		console.log('fonction waterPurchase');
 	if(this._money > 0 && this._money >= parseInt(data)){
-		/**/console.log(this._money, parseInt(data));
+		console.log(this._money, parseInt(data));
 		this.setMoney(this._money - parseInt(data));//diminution de 1$/L acheté
-		this.setGlobalTank(this._globalTank + parseInt(data));//augmentation vol citerne globale
+		this.setGlobalTank(this.getGlobalTank() + parseInt(data));//augmentation vol citerne globale
 		//this.notify({type: 'WATER_PURCHASE', money: this._gameModel.getMoney(), globalTank: rhis._gameModel.getGolbalTank()});
 	}
 };
 
+/*Game.prototype.dry = function(){
+	if(this._globalTank > 0){
+
+	}
+};*/
 
 // ------------------ GETTER & SETTER ----------------------- //
 Game.prototype.getMoney = function(){
@@ -64,8 +68,8 @@ Game.prototype.setMoney = function(money){
 };
 
 Game.prototype.setGlobalTank = function(globalTank){
-	this._globalTank = globalTank;
-	this.notify({type: 'GLOBAL_TANK_CHANGED', data: this.getGlobalTank()});
+		this._globalTank = globalTank;
+		this.notify({type: 'GLOBAL_TANK_CHANGED', data: this.getGlobalTank()});			
 };
 
 Game.prototype.setNbHarvest = function(nbHarv){
