@@ -30,10 +30,13 @@ Game.prototype.start = function(){
 	}
 };
 
-Game.prototype.waterPurchase = function(){
-	if(this._money > 0){
-		this.setMoney(this._money - this._volWater);//diminution de 1$/L acheté
-		this.setGlobalTank(this._globalTank + this._volWater);//augmentation vol citerne globale
+Game.prototype.waterPurchase = function(data){//data correcpond à ce qu'on passe comme volume d'eau acheté
+		console.log('fonction waterPurchase');
+	if(this._money > 0 && this._money >= parseInt(data)){
+		/**/console.log(this._money, parseInt(data));
+		this.setMoney(this._money - parseInt(data));//diminution de 1$/L acheté
+		this.setGlobalTank(this._globalTank + parseInt(data));//augmentation vol citerne globale
+		//this.notify({type: 'WATER_PURCHASE', money: this._gameModel.getMoney(), globalTank: rhis._gameModel.getGolbalTank()});
 	}
 };
 
@@ -57,21 +60,21 @@ Game.prototype.getVolWater = function(){
 
 Game.prototype.setMoney = function(money){
 	this._money = money;
-	this.notify({type: 'MONEY_CHANGED', data: this._gameModel.getMoney()});
+	this.notify({type: 'MONEY_CHANGED', data: this.getMoney()});
 };
 
 Game.prototype.setGlobalTank = function(globalTank){
 	this._globalTank = globalTank;
-	this.notify({type: 'GLOBAL_TANK_CHANGED', data: this._gameModel.getGlobalTank()});
+	this.notify({type: 'GLOBAL_TANK_CHANGED', data: this.getGlobalTank()});
 };
 
 Game.prototype.setNbHarvest = function(nbHarv){
 	this._nbHarvest = nbHarv;
-	this.notify({type: 'NB_HARVEST_CHANGED', data: this._gameModel.getNbHarvest()});
+	this.notify({type: 'NB_HARVEST_CHANGED', data: this.getNbHarvest()});
 };
 
 Game.prototype.setVolWater = function(volWater){
 	this._volWater = volWater;
-	this.notify({type: 'VOL_WATER_CHANGED', data: this._gameModel.getVolWater()})
+	this.notify({type: 'VOL_WATER_CHANGED', data: this.getVolWater()})
 };
 // ------------------------------------------------------------- //

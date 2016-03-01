@@ -22,3 +22,14 @@ span{
 .harvestTime{
 	background-color: #86BA47;
 }
+
+#volume, #buy{
+	display: block;
+	margin: 15px;
+}
+#popin{
+	display: block;
+	border: 1px solid black;
+	width: 250px;
+	height: 110px;
+}

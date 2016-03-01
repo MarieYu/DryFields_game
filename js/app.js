@@ -1,9 +1,9 @@
 // js/app.js
 
-var ctrlField = new FieldController();
 var gameModel = new Game();
-var ctrlGame = new GameController(gameModel);//controller partie connait modèle de la partie
+var ctrlField = new FieldController(gameModel);
 var gameView = new GameView(gameModel);
+var ctrlGame = new GameController(gameModel);//controller partie connait modèle de la partie
 
 for (var ii=0; ii<=2; ii++){
 	var field = new Field(ii);//instance d'un modèle avec id=ii
@@ -15,12 +15,13 @@ for (var ii=0; ii<=2; ii++){
 	ctrlField.addField(field); //ajout modèles au controleur de champs
 	//Observer
 	fieldView.addObserver(ctrlField);
-	gameView.addObserver(ctrlGame);
 	field.addObserver(fieldView);
-	gameModel.addObserver(fieldView);
 }
 
-console.log(ctrlField);
+gameModel.addObserver(gameView);
+gameView.addObserver(ctrlGame);
+
+/*console.log(ctrlField);*/
 
 
 

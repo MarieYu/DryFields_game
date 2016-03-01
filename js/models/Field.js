@@ -4,7 +4,7 @@ function Field(id){
 	Observable.call(this);
 	this._id = id;
 	this._interval = null;
-	this._progress = 15;
+	this._progress = 18;
 	this._tank = 3;
 	this._mature();
 	// this._game = game;

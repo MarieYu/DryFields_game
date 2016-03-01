@@ -1,11 +1,11 @@
 // /js/controllers/FieldController.js
 
-function FieldController(){
+function FieldController(gameModel){
 	//this._model = model;
 	// this._view = view;
 	this._fields = [];
 	this._views = [];
-	// this._game = game;
+	this._gameModel = gameModel;
 
 }
 
@@ -22,6 +22,7 @@ FieldController.prototype.update = function(event){
 			break;
 		case 'HARVEST_PRESS':
 			this._fields[event.id].harvest();
+			this._gameModel.setMoney(this._gameModel.getMoney()+40);
 			break;
 	}
 };
